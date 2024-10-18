@@ -8,23 +8,24 @@
  */
 class Solution {
 public:
-     bool hasCycle(ListNode *head) {
-
-        map<ListNode*, bool> table;
-
-        ListNode* temp = head;
-        while(temp != NULL) {
-            if(table[temp] == false) {
-                table[temp] = true;
+    bool hasCycle(ListNode *head) {
+        //move fast 2steps and slow 1step if they meet before null then cycle is present
+        ListNode* fast=head;
+        ListNode* slow=head;
+        while(fast!=NULL)
+        {
+          fast=fast->next;
+            if(fast!=NULL)
+            {
+             fast=fast->next;
+             slow=slow->next;
             }
-            else{
-                //cycle present
-                return true;
-            }
-            temp = temp -> next;
+             if(fast==slow)
+        {
+           return true;
         }
-        //loop not present
+        }
+       
         return false;
-        
     }
 };
